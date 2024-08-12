@@ -1,0 +1,24 @@
+name: Deploy to Lightsail
+on:
+  push:
+    branches:
+      - dev  # или ветка, в которую вы делаете мердж
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Create a Dev SSH key
+      env:
+        DEPLOYMENTKEY: ${{ secrets.DEPLOYMENTKEY_DEV }}
+      run: |
+        echo "$DEPLOYMENTKEY" >deployment.pem
+        chmod 400 deployment.pem
+
+    - name: Deploy to Lightsail
+      run: |
+        ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i deployment.pem thingitude@18.133.16.18 ./getit tracker-app/ dev
