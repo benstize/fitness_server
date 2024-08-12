@@ -1,5 +1,7 @@
 import { ConfigService } from '@nestjs/config';
 import { Sequelize } from 'sequelize-typescript';
+import { User } from 'src/modules/users/entities/user.entity';
+
 
 export const databaseProviders = [
   {
@@ -13,7 +15,9 @@ export const databaseProviders = [
         password: configService.get<string>('db.password'),
         database: configService.get<string>('db.name'),
       });
-      sequelize.addModels([]);
+      sequelize.addModels([
+        User
+      ]);
       return sequelize;
     },
     inject: [ConfigService],
