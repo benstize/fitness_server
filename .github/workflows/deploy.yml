@@ -21,4 +21,4 @@ jobs:
 
     - name: Deploy to Lightsail
       run: |
-        ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i deployment.pem thingitude@18.133.16.18 ./getit tracker-app/ dev
+        ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i deployment.pem bitnami@18.132.178.20 './deploy fitness_server dev'
