@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { APP_FILTER } from '@nestjs/core';
 import { DatabaseModule } from 'src/core/database/database.module';
 import { validate } from 'src/core/config/env.validation';
 import appConfig from './core/config/app.config';
 import dbConfig from './core/config/db.config';
 import authConfig from './core/config/auth.config';
-
 
 @Module({
   imports: [
@@ -17,7 +15,6 @@ import authConfig from './core/config/auth.config';
       validate,
     }),
     DatabaseModule,
-
-  ]
+  ],
 })
-export class AppModule { }
+export class AppModule {}

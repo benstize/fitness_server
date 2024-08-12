@@ -13,9 +13,7 @@ export const databaseProviders = [
         password: configService.get<string>('db.password'),
         database: configService.get<string>('db.name'),
       });
-      sequelize.addModels([
-
-      ]);
+      sequelize.addModels([]);
       return sequelize;
     },
     inject: [ConfigService],
